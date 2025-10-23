@@ -1,0 +1,169 @@
+\documentclass{snu-fl-questionnaire}
+
+% Hangul font setup
+\setmainhangulfont{KoPubWorldBatang_Pro}[
+  Scale = MatchUppercase,
+  UprightFont={* Light},
+  BoldFont={* Bold},
+  AutoFakeSlant = 0.15
+]
+\setsanshangulfont{KoPubWorldDotum_Pro}[
+  Scale = MatchUppercase,
+  BoldFont={* Bold},
+]
+
+% If there are problems in Hangul Font setup code,
+% run the following line to update your cache:
+%   $ fc-cache -fv
+%
+% Or, you can load fonts by their filenames, e.g.,
+%
+%\setmainhangulfont{KoPubWorldBatang_Pro}[
+%  Scale = MatchUppercase,
+%  UprightFont = {KoPubWorld Batang_Pro Light.otf}, % Exact filename
+%  BoldFont = {KoPubWorld Batang_Pro Bold.otf},     % Exact filename
+%  AutoFakeSlant = 0.15
+%]
+%\setsanshangulfont{KoPubWorldDotum_Pro}[
+%  Scale = MatchUppercase,
+%  UprightFont = {KoPubWorld Dotum_Pro Medium.otf}, % Exact filename (or Light)
+%  BoldFont = {KoPubWorld Dotum_Pro Bold.otf}       % Exact filename
+%]
+
+% Metadata
+\title{2025 한국 언어조사 질문지}
+\author{서울대학교 인문대학 언어학과}
+\date{2025년 10월 31일 \textasciitilde{} 11월 1일}
+\printdate{2025년 10월 31일}
+\issuedate{2025년 10월 31일}
+\tel{(02) 880-6163, 6164}
+
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\chapter{2025학년도 언어조사 개요}
+2025학년도 언어조사의 일정, 장소, 교통편 등을 적습니다.
+
+\chapter{2025학년도 언어조사 일정}
+2025학년도 언어조사의 구체적인 일정을 적습니다.
+
+\chapter{자료제공인 조사표 (1)}
+\Consultant
+
+\chapter{자료제공인 조사표 (2)}
+\Consultant
+
+\chapter{자료제공인 조사표 (3)}
+\Consultant
+
+\chapter{자료제공인 조사표 (4)}
+\Consultant
+
+\chapter{일러두기}
+일러둘 내용을 적습니다.
+
+
+\mainmatter
+\chapter{어휘·음운편}
+\subsection{일러두기}
+일러둘 내용을 적습니다.
+
+\section{절 예시 (1)}
+\subsection{일러두기}
+일러둘 내용을 적습니다.
+
+\subsection{자유발화 질문}
+자유발화 질문을 적습니다.
+
+\subsection{목표 어휘}
+목표 어휘와 예상 형태, 질문을 적습니다. 다음과 같이 적습니다. \\
+
+\Entry{
+  word = {벼},
+  pred = {베},
+  feat = {ms},
+  desc = {%
+    벼이삭, 벼의 열매, 식물 벼의 명칭, \\
+    단어형 차이 (나락 등의 어휘 확인)
+  },
+  qstn = {%
+    (정보제공자 본인 or 동네분들)은 어떤 농사를 지으시나요? \\
+    논에서는 주로 무엇을 키우시나요? (익을수록 고개를 숙이는 작물)
+  },
+  advq = {%
+    벼를 키울 때 주의해야 할 것은 무엇이 있을까요? \\
+    벼가 다 자라면 어떻게 수확하고 처리하세요?
+  }
+}
+
+\newpage
+\section{절 예시 (2)}
+\subsection{일러두기}
+일러둘 내용을 적습니다.
+
+\subsection{자유발화 질문}
+자유발화 질문을 적습니다.
+
+\subsection{목표 어휘}
+목표 어휘와 예상 형태, 질문을 적습니다. 다음과 같이 적습니다. \\
+
+\Entry{
+  word = {부엌},
+  pred = {부엌},
+  feat = {ms,sp},
+  desc = {%
+    아궁이를 의미하는지, 다른단어 정지 등, \\
+    기저 종성 /ㅋ/
+  },
+  qstn = {%
+    식사를 준비하거나 설거지를 할 때 어디로 가시죠? \\
+    집안에서 요리기구들이 주로 어디에 있죠?
+  },
+  advq = {%
+    정지라는 말을 들어보셨나요/쓰시나요? \\
+    들어보셨다면 부엌과 정지 사이에 의미 차이가 있나요?
+  }
+}
+
+\chapter{문법편}
+\subsection{일러두기}
+일러둘 내용을 적습니다.
+
+\section{절 예시}
+\subsection{일러두기}
+일러둘 내용을 적습니다.
+
+\subsection{소절 예시}
+목표 문법 표지와 질문을 적습니다.
+
+
+\chapter{어휘 의미지도}
+\section{절 예시}
+주제별로 의미지도를 그립니다.
+
+
+\chapter{사진 자료}
+참고할 사진을 넣습니다.
+
+
+\chapter*{부록}
+\begin{appendices}
+
+\section{어휘 체크리스트}
+어휘 체크리스트를 적습니다.
+
+
+\section{문법 체크리스트}
+문법 체크리스트를 적습니다.
+
+\end{appendices}
+
+
+\backmatter
+\makebackcover
+
+\end{document}
