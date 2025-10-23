@@ -372,6 +372,8 @@
     \hline
     \end{tblr}
 
+    \vfill
+
     \group_end:
   }
 
