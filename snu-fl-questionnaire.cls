@@ -384,7 +384,7 @@
       & \ColoredFeat{\g_q_sp}{[SP]}
       & \ColoredFeat{\g_q_dp}{[DP]}
       & \entrykey{설명}
-      & \SetCell{l}{\l_q_desc} \\
+      & \SetCell{j}{\l_q_desc} \\
     \end{tblr} \\
 
     \vspace{-0.15\baselineskip}
@@ -392,7 +392,7 @@
     \par\noindent
     \begin{tblr}{
       width = \linewidth,
-      colspec = {|Q[c,m,1.2cm]|X[l,m]|},
+      colspec = {|Q[c,m,1.2cm]|X[j,m]|},
       vlines,
       row{3} = {2cm}
     }
