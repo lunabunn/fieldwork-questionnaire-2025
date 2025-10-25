@@ -276,11 +276,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Lexicon entries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{siunitx}
-\newcounter{lexcount}[section]
+\sisetup{
+  mode = text,
+  reset-text-family = false,
+  reset-text-series = false
+}
 
+\newcounter{lexcount}[section]
 \renewcommand{\thelexcount}{
   \Alph{section}
-  \num[minimum-integer-digits = 2]{\arabic{lexcount}}
+  {\sffamily\bfseries \num[minimum-integer-digits = 2]{\arabic{lexcount}}}
 }
 
 \clist_new:N \g_q_feat_clist
@@ -414,7 +419,7 @@
   \makecell{
     \textbf{
       \symbol{\numexpr64+#1}
-      \num[minimum-integer-digits = 2]{#2}
+      {\sffamily\bfseries \num[minimum-integer-digits = 2]{#2}}
     }\\
     \setlength{\fboxrule}{0pt}
     \fbox{
