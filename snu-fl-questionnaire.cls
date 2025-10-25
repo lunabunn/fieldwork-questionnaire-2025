@@ -275,12 +275,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Lexicon entries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{fmtcount}
+\RequirePackage{siunitx}
 \newcounter{lexcount}[section]
 
 \renewcommand{\thelexcount}{
   \Alph{section}
-  \padzeroes[2]{\decimal{lexcount}}
+  \num[minimum-integer-digits = 2]{\arabic{lexcount}}
 }
 
 \clist_new:N \l_q_feat_clist
@@ -309,6 +309,7 @@
           { \bool_set_true:N \l_q_dp }
           { \bool_set_false:N \l_q_dp }
       },
+    imag .tl_set:N = \l_q_imag,
     desc .tl_set:N = \l_q_desc,
     qstn .tl_set:N = \l_q_qstn,
     advq .tl_set:N = \l_q_advq,
@@ -328,6 +329,11 @@
         \entrykey\color{lightgray} #2
       }
   }
+
+\seq_new:N \g_image_refs
+\seq_new:N \g_image_last_indices
+\tl_new:N \g_section_last
+\tl_set:Nn \g_section_last { 0 }
   
 \NewDocumentCommand { \Entry } { m }
   {
@@ -335,6 +341,23 @@
 
     \group_begin: % keep the assignment to the keys local
     \keys_set:nn { entry } { #1 }
+    \tl_if_empty:VF \l_q_imag
+      {
+        \int_compare:nNnF { \g_section_last } = { \int_use:N \c@section }
+          {
+            \seq_if_empty:NF \g_image_refs
+              {
+                \seq_gput_right:Ne \g_image_last_indices { \seq_count:N \g_image_refs }
+              }
+          }
+        \tl_gset:Ne \g_section_last { \int_use:N \c@section }
+        \seq_gput_right:Ne \g_image_refs
+          {
+            { \int_use:N \c@section }
+            { \int_use:N \c@lexcount }
+            { \l_q_imag }
+          }
+      }
 
     \OnehalfSpacing
 
@@ -376,6 +399,80 @@
     \vfill
 
     \group_end:
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Image References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{longtable}
+
+\newcommand{\imageref}[3]{
+  \makecell{
+    \textbf{
+      \symbol{\numexpr64+#1}
+      \num[minimum-integer-digits = 2]{#2}
+    }\\
+    \setlength{\fboxrule}{0pt}
+    \fbox{
+      \begin{minipage}[c][5cm][c]{6cm}
+        \centering
+        \includegraphics[width=6cm, height=5cm, keepaspectratio]{#3}
+      \end{minipage}
+    }
+  }
+}
+
+\NewDocumentCommand{\ImageRefs}{}
+  {
+    \tl_clear:N \g_tmpa_tl
+    \int_set:Nn \g_tmpa_int { 0 }
+    \seq_map_indexed_inline:Nn \g_image_refs
+      {
+        \int_incr:N \g_tmpa_int
+        \int_compare:nNnT { \int_use:N \g_tmpa_int } = { 1 }
+          {
+            \tl_put_right:Nn \g_tmpa_tl { \hline }
+          }
+        \seq_if_in:NnTF \g_image_last_indices { ##1 }
+          {
+            \int_if_odd:nTF { \int_use:N \g_tmpa_int }
+              {
+                \tl_put_right:Nn \g_tmpa_tl { \multicolumn { 2 } { |c| } { \imageref ##2 } }
+              }
+              {
+                \tl_put_right:Nn \g_tmpa_tl { \imageref ##2 }
+              }
+            \tl_put_right:Nn \g_tmpa_tl { \\ \hline \pagebreak }
+            \int_set:Nn \g_tmpa_int { 0 }
+          }
+          {
+            \int_compare:nNnTF { ##1 } = { \seq_count:N \g_image_refs }
+              {
+                \int_if_odd:nTF { \int_use:N \g_tmpa_int }
+                  {
+                    \tl_put_right:Nn \g_tmpa_tl { \multicolumn { 2 } { |c| } { \imageref ##2 } }
+                  }
+                  {
+                    \tl_put_right:Nn \g_tmpa_tl { \imageref ##2 }
+                  }
+                \tl_put_right:Nn \g_tmpa_tl { \\ \hline }
+              }
+              {
+                \tl_put_right:Nn \g_tmpa_tl { \imageref ##2 }
+            
+                \int_if_odd:nTF { \int_use:N \g_tmpa_int }
+                  { \tl_put_right:Nn \g_tmpa_tl { & } }
+                  { \tl_put_right:Nn \g_tmpa_tl { \\ \hline } }
+              }
+          }
+      }
+    \begin{longtable}{|>{\centering\arraybackslash}m{0.5\textwidth}|>{\centering\arraybackslash}m{0.5\textwidth}|}
+      \g_tmpa_tl
+    \end{longtable}
   }
 
 
