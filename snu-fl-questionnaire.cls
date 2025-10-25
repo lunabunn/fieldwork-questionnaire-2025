@@ -283,11 +283,11 @@
   \num[minimum-integer-digits = 2]{\arabic{lexcount}}
 }
 
-\clist_new:N \l_q_feat_clist
+\clist_new:N \g_q_feat_clist
 
-\bool_new:N \l_q_ms
-\bool_new:N \l_q_sp
-\bool_new:N \l_q_dp
+\bool_new:N \g_q_ms
+\bool_new:N \g_q_sp
+\bool_new:N \g_q_dp
 
 \keys_define:nn { entry }
   {
@@ -295,19 +295,19 @@
     pred .tl_set:N = \l_q_pred,
     feat .code:n =
       {
-        \clist_set:Nn \l_q_feat_clist { #1 }
+        \clist_set:Nn \g_q_feat_clist { #1 }
 
-        \clist_if_in:NnTF \l_q_feat_clist { ms }
-          { \bool_set_true:N \l_q_ms }
-          { \bool_set_false:N \l_q_ms }
+        \clist_if_in:NnTF \g_q_feat_clist { ms }
+          { \bool_set_true:N \g_q_ms }
+          { \bool_set_false:N \g_q_ms }
 
-        \clist_if_in:NnTF \l_q_feat_clist { sp }
-          { \bool_set_true:N \l_q_sp }
-          { \bool_set_false:N \l_q_sp }
+        \clist_if_in:NnTF \g_q_feat_clist { sp }
+          { \bool_set_true:N \g_q_sp }
+          { \bool_set_false:N \g_q_sp }
           
-        \clist_if_in:NnTF \l_q_feat_clist { dp }
-          { \bool_set_true:N \l_q_dp }
-          { \bool_set_false:N \l_q_dp }
+        \clist_if_in:NnTF \g_q_feat_clist { dp }
+          { \bool_set_true:N \g_q_dp }
+          { \bool_set_false:N \g_q_dp }
       },
     imag .tl_set:N = \l_q_imag,
     desc .tl_set:N = \l_q_desc,
@@ -372,9 +372,9 @@
       & \SetCell[c=3]{c}{\l_q_word} & 1-3 & 1-4 
       & \entrykey{예상형태} & \l_q_pred \\
     \entrykey{유의점}
-      & \ColoredFeat{\l_q_ms}{[MS]}
-      & \ColoredFeat{\l_q_sp}{[SP]}
-      & \ColoredFeat{\l_q_dp}{[DP]}
+      & \ColoredFeat{\g_q_ms}{[MS]}
+      & \ColoredFeat{\g_q_sp}{[SP]}
+      & \ColoredFeat{\g_q_dp}{[DP]}
       & \entrykey{설명}
       & \SetCell{l}{\l_q_desc} \\
     \end{tblr} \\
