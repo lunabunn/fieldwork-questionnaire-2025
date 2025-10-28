@@ -25,7 +25,7 @@ xelatex main
 2025 벌교 지역어 조사 사전조사팀 및 질문지팀
 
 - 강민하 [alsgk1123@snu.ac.kr](alsgk1123@snu.ac.kr)
-- 문준모 [moonjunmo@snu.ac.kr](moonjunmo@snu.ac.kr)
+- 문준모 [moonjunmo@gatech.edu](moonjunmo@gatech.edu)
 - 박준영 [bloomwayz@snu.ac.kr](bloomwayz@snu.ac.kr)
 - 유승민 [ysm051222@snu.ac.kr](ysm051222@snu.ac.kr)
 - 이상인 [tworiver1213@snu.ac.kr](tworiver1213@snu.ac.kr)
